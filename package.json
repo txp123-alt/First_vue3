@@ -16,6 +16,9 @@
     "@vue/tsconfig": "^0.7.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
-    "vue-tsc": "^2.2.8"
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-tsc": "^2.2.8", 
+    "fast-glob": "^3.3.3",
+    "globals": "^16.1.0"
   }
 }
