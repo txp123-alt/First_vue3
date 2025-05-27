@@ -1,6 +1,7 @@
 // index.scss (总入口文件)
-@import './variable';
-@import './normalize';
-@import './base';
-@import './typography';
-@import './utilities';
+
+@use './variable';
+@use './normalize';
+@use './base';
+@use './typography';
+@use './utilities';

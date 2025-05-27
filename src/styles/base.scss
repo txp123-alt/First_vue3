@@ -1,5 +1,5 @@
 // _base.scss (公共基础样式)
-@import 'variable';
+@use 'variable';
 
 html {
   box-sizing: border-box;
