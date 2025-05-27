@@ -24,5 +24,9 @@ app.use(gloalComponent)
 // 4. 最后引入全局样式
 import '@/styles/index.scss'
 
+//5. 引入路由
+import router from '@/router'
+app.use(router)
+
 
 app.mount('#app')
