@@ -1,1 +1,6 @@
-@import './reset.scss'; //引入清除默认样式文件
+// index.scss (总入口文件)
+@import './variable';
+@import './normalize';
+@import './base';
+@import './typography';
+@import './utilities';

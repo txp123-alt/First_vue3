@@ -21,4 +21,8 @@ app.use(ElementPlus, {
 import gloalComponent from '@/components'
 app.use(gloalComponent)
 
+// 4. 最后引入全局样式
+import '@/styles/index.scss'
+
+
 app.mount('#app')

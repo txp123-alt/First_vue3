@@ -18,13 +18,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
-  //scss样式全局变量配置
-  css: {
-    preprocessorOptions: {
-      scss: {
-        javascriptEnabled: true,
-        additionalData: `@import "@/styles/index.scss";`
-      }
-    }
-  }
+  //scss样式全局变量配置(不建议在这里引用, 改为在main.ts中显示引入)
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@import "@/styles/index.scss";`
+  //     }
+  //   }
+  // }
 })
