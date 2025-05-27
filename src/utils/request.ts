@@ -13,7 +13,8 @@ let request = axios.create({
 //给 axios 实例添加响应及请求拦截器
 request.interceptors.request.use((config)=>{
     //config 对象有个请求头 headers
-
+    console.log('axios config:',config);
+    
     //返回配置对象
     return config;
 })

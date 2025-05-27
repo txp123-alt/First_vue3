@@ -18,6 +18,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  server:{
+    proxy: {
+      '/dev-api': {
+        target: 'http://localhost:8081',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/dev-api/, '')
+      }
+    }
+  }
   //scss样式全局变量配置(不建议在这里引用, 改为在main.ts中显示引入)
   // css: {
   //   preprocessorOptions: {
