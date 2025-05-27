@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import timeIcon from './components/SvgIcon/index.vue'
+import timeIcon from '@/components/SvgIcon/index.vue'
 </script>
 
 <style scoped>

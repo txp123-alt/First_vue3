@@ -12,4 +12,10 @@ export default defineConfig({
     createSvgIconsPlugin({
     iconDirs :[path.resolve(__dirname,'src/assets/icons')],
   })],
+  //相对路径的配置
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  }
 })
