@@ -28,5 +28,9 @@ import '@/styles/index.scss'
 import router from '@/router'
 app.use(router)
 
+//6. 引入状态管理（仓库）
+import pinia from '@/store'
+app.use(pinia)
+
 
 app.mount('#app')

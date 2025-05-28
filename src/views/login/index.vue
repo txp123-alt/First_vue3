@@ -14,7 +14,7 @@
                         <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="login_btn" type="success" size="default">登录</el-button>
+                        <el-button class="login_btn" type="success" size="default" @click="login">登录</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -22,14 +22,22 @@
     </div>
 </template>
 <script setup lang="ts">
-import {User,Lock} from '@element-plus/icons-vue'
+import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue';
+import useUserStore from '@/store/modules/user' //引入用户仓库
+
+let userStore = useUserStore()
+
 
 //收集登录信息
 let loginForm = reactive({
-    username: '',
-    password: ''
+    username: '用户名',
+    password: '111'
 })
+
+const login = () =>{
+    userStore.userLogin(loginForm);
+}
 </script>
 <style lang="scss" scoped>
 .login_container{
