@@ -7,16 +7,28 @@ import type { loginForm } from '@/api/user/type'
 
 let useUserStore = defineStore('User', {
   state: () => {
-    return {}
+    return {
+      token: localStorage.getItem('TOKEN'), //用户唯一标识符
+    }
   },
   // 类似于计算属性
   getters: {},
   // 处理异步|逻辑的地方
   actions: {
-    userLogin(params:loginForm) {
+    async userLogin(params:loginForm) {
       //用户登录
-      console.log(params);
+      console.log('请求参数：',params);
       
+      let request:any = await reqLogin(params)
+      console.log('登录接口返回结果:',request);
+      if  (request.code == 200) {
+        this.token = request.data.token
+        //本地保存一份Token，防止刷新页面丢失登录的用户信息
+        localStorage.setItem('TOKEN',request.data.token)
+        return 'ok' //返回一个成功的promise
+      }else {
+        return Promise.reject(new Error(request.data.message))
+      }   
     }
   }
 })

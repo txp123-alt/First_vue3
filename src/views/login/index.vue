@@ -14,7 +14,7 @@
                         <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="login_btn" type="success" size="default" @click="login">登录</el-button>
+                        <el-button class="login_btn" type="success" size="default" @click="login" :loading="loginButLoading">登录</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -23,20 +23,47 @@
 </template>
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import useUserStore from '@/store/modules/user' //引入用户仓库
+import { useRouter } from 'vue-router'; //引入路由
+import { ElNotification } from 'element-plus'; //引入提示框
 
-let userStore = useUserStore()
+let userStore = useUserStore() //获取用户仓库实例
+
+let $router = useRouter() //获取路由实例
 
 
 //收集登录信息
 let loginForm = reactive({
-    username: '用户名',
-    password: '111'
+    username: 'admin',
+    password: '123456'
 })
 
-const login = () =>{
-    userStore.userLogin(loginForm);
+//定义登录按钮状态
+let loginButLoading = ref(false)
+
+const login = async() =>{
+    loginButLoading.value = true
+    try {
+        //可以写.then()的语法
+        await userStore.userLogin(loginForm);
+        //通过编程式导航，跳转到首页
+        $router.push('/')
+        //登录成功的提示信息
+        ElNotification({
+            type: 'success',
+            message: '登录成功'
+        })
+        loginButLoading.value = false
+    } catch (error) {
+        console.log(error);
+        ElNotification({
+            type: 'error',
+            message: (error as Error).message
+        })
+        loginButLoading.value = false
+    }
+    
 }
 </script>
 <style lang="scss" scoped>
