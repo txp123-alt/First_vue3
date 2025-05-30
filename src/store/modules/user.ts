@@ -3,12 +3,16 @@ import { defineStore } from 'pinia'
 //登录接口
 import { reqLogin } from '@/api/user'
 //引入数据类型
-import type { loginForm } from '@/api/user/type'
+import type { loginForm, loginResponseData } from '@/api/user/type'
+import type { UserState } from './types/type'
+
+//引入操作浏览器存储数据的方法
+import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
 
 let useUserStore = defineStore('User', {
-  state: () => {
+  state: ():UserState => {
     return {
-      token: localStorage.getItem('TOKEN'), //用户唯一标识符
+      token: GET_TOKEN("TOKEN"), //用户唯一标识符
     }
   },
   // 类似于计算属性
@@ -19,12 +23,12 @@ let useUserStore = defineStore('User', {
       //用户登录
       console.log('请求参数：',params);
       
-      let request:any = await reqLogin(params)
+      let request:loginResponseData = await reqLogin(params)
       console.log('登录接口返回结果:',request);
       if  (request.code == 200) {
-        this.token = request.data.token
+        this.token = (request.data.token as string)
         //本地保存一份Token，防止刷新页面丢失登录的用户信息
-        localStorage.setItem('TOKEN',request.data.token)
+        SET_TOKEN('TOKEN',(request.data.token as string))
         return 'ok' //返回一个成功的promise
       }else {
         return Promise.reject(new Error(request.data.message))
