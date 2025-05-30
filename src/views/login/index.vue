@@ -27,6 +27,7 @@ import { reactive, ref } from 'vue';
 import useUserStore from '@/store/modules/user' //引入用户仓库
 import { useRouter } from 'vue-router'; //引入路由
 import { ElNotification } from 'element-plus'; //引入提示框
+import { getTime } from '@/utils/time'
 
 let userStore = useUserStore() //获取用户仓库实例
 
@@ -52,7 +53,8 @@ const login = async() =>{
         //登录成功的提示信息
         ElNotification({
             type: 'success',
-            message: '登录成功'
+            message: '欢迎回来',
+            title: `hi, ${getTime()}`
         })
         loginButLoading.value = false
     } catch (error) {
@@ -63,7 +65,6 @@ const login = async() =>{
         })
         loginButLoading.value = false
     }
-    
 }
 </script>
 <style lang="scss" scoped>
