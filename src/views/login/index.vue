@@ -92,7 +92,7 @@ const login = async() =>{
         position: relative;
         width: 80%;
         top: 30vh;
-        background: url('@/assets/images/formBackGround.jpg');
+        background: url('@/assets/images/login_form.png');
         background-size: cover;
         padding: 40px;
         h1{
