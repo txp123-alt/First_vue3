@@ -40,15 +40,37 @@ let loginForm = reactive({
     password: '123456'
 })
 
+//自定义用户名校验
+const validatorUserName = (rule:any,value:any,callback:any) => {
+    if(value.length < 3 || value.length > 10){
+        callback(new Error('用户名长度在3-10个字符之间'))
+    }else{
+        callback()
+    }
+}
+
+//自定义密码校验
+const validatorPassword = (rule:any,value:any,callback:any) => {
+     if(value.length < 6){
+        callback(new Error('密码长度至少6个字符'))
+    }else{
+        callback()
+    }
+}
+
 //表单校验的配置对象
 const rules = reactive({
     username:[
-        {required:true,min:3,max:10,message:'用户名长度在3-10个字符之间',trigger:'change'}
-    ],
+        // {required:true,min:3,max:10,message:'用户名长度在3-10个字符之间',trigger:'change'}
+        // 自定义检验规则
+        {trigger:'change', validator: validatorUserName}
+],
     password:[
-        {required:true,min:3,max:10,message:'密码长度在3-10个字符之间',trigger:'change'}
+        // {required:true,min:3,max:10,message:'密码长度在3-10个字符之间',trigger:'change'}
+        {trigger:'change',validator:validatorPassword}
     ]
 })
+
 
 //定义登录按钮状态
 let loginButLoading = ref(false)
