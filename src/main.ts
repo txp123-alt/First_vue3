@@ -21,7 +21,7 @@ app.use(ElementPlus, {
 import gloalComponent from '@/components'
 app.use(gloalComponent)
 
-// 4. 最后引入全局样式
+// 4. 最后引入全局样式(@use用不了 ！！！  这里引用的目的是为了清除默认样式！！！， 全局变量用不了！！！)
 import '@/styles/index.scss'
 
 //5. 引入路由

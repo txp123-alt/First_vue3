@@ -1,0 +1,16 @@
+//滚动条样式
+@use '@/styles/variable' as var;
+
+::-webkit-scrollbar {
+    width: 10px
+  }
+
+::-webkit-scrollbar-track {
+    background-color: var.$base-menu-bg-color;
+  }
+
+::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: yellowgreen;
+    border-radius: 10px;
+  }
