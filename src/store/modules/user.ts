@@ -5,6 +5,8 @@ import { reqLogin } from '@/api/user'
 //引入数据类型
 import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { UserState } from './types/type'
+//引入路由（常量）
+import { constantsRouter } from '@/router/routers'
 
 //引入操作浏览器存储数据的方法
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
@@ -13,6 +15,7 @@ let useUserStore = defineStore('User', {
   state: ():UserState => {
     return {
       token: GET_TOKEN("TOKEN"), //用户唯一标识符
+      menuRoutes: constantsRouter, //仓库存储生成菜单需要数组
     }
   },
   // 类似于计算属性

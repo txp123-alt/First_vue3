@@ -3,6 +3,14 @@
         <!--左侧菜单-->
         <div class="layout_slider">
             <logo></logo>
+            <!-- 菜单 -->
+            <!--滚动条-->
+             <el-scrollbar class="scrollbar">
+                <!--根据路由动态生成菜单-->
+                <el-menu background-color="#001529" text-color="white" active-text-color="#ffd04b" router>
+                    <Menu :menuList="userStore.menuRoutes"></Menu>
+                </el-menu>
+             </el-scrollbar>
         </div>
         <!--顶部导航-->
         <div class="layout_tabbar">345</div>
@@ -14,6 +22,9 @@
 </template>
 <script setup lang="ts">
 import logo from './logo/index.vue'
+import Menu from './menu/index.vue'
+import useUserStore from '@/store/modules/user'; //用户小仓库值
+const userStore = useUserStore();
 
 </script>
 <style lang="scss" scoped>
@@ -27,6 +38,10 @@ import logo from './logo/index.vue'
         width: styleVariable.$base-menu-width;
         height: 100vh;
         background-color: styleVariable.$base-menu-bg-color;
+        .scrollbar {
+            width: 100%;
+            height: calc(100vh - styleVariable.$base-tabbar-height);
+        }
     }
     .layout_tabbar {
         position: fixed;
